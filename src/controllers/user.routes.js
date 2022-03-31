@@ -23,13 +23,13 @@ router.post(
   body('firstName').notEmpty(),
   body('lastName').notEmpty(),
   body('password').notEmpty().isLength({ min: 5 }),
-  (req, res) => {
+  async (req, res) => {
     validateBody(req);
 
-    const existingUser = userRepository.getUserByFirstName(req.body.firstName);
+    const existingUser = await userRepository.getUserByFirstName(req.body.firstName);
 
     if (existingUser) {
-      throw new Error('Unable to create the user');
+        throw new Error('Unable to create the user');
     }
 
     userRepository.createUser(req.body);

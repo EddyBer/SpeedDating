@@ -1,17 +1,26 @@
 const { users } = require('./db');
 const uuid = require('uuid');
+const {User} = require('../models/user.model')
 
 exports.getUsers = () => users;
 
-exports.getUserByFirstName = (firstName) => {
-  return users.find((user) => user.firstName == firstName);
+exports.getUserByFirstName = async (firstName) => {
+
+    const user = await User.findOne({
+        where: {
+          firstName: firstName
+        }
+      })
+    return user
 };
 
-exports.createUser = (body) => {
-  const user = body;
-  user.id = uuid.v4();
+exports.createUser = async (body) => {
 
-  users.push(user);
+    await User.create({pseudo:body.pseudo,
+                        firstName:body.firstName,
+                        lastName:body.lastName,
+                        password:body.password,
+                        role:body.roles})
 };
 
 exports.updateUser = (id, data) => {
@@ -26,12 +35,17 @@ exports.updateUser = (id, data) => {
   foundUser.password = data.password || foundUser.password;
 };
 
-exports.deleteUser = (id) => {
+exports.deleteUser = async (id) => {
   const userIndex = users.findIndex((user) => user.id == id);
 
   if (userIndex === -1) {
     throw new Error('User not foud');
   }
+  await User.destroy({
+    where: {
+      id: id
+    }
+  });
 
   users.splice(userIndex, 1);
 }
