@@ -5,7 +5,7 @@ const { sequelize } = require('../models/db');
 
 class WebServer {
   app = undefined;
-  port = 3000;
+  port = 5500;
   server = undefined;
 
   constructor() {
@@ -32,7 +32,7 @@ class WebServer {
   }
 
   _initializeRoutes() {
-    this.app.use('/users', userRoutes.initializeRoutes());
+    this.app.use('/', userRoutes.initializeRoutes());
   }
 }
 

@@ -5,46 +5,20 @@ const userRepository = require('../models/user-repository');
 const { validateBody } = require('./validation/route.validator');
 
 router.get('/', (req, res) => {
-  res.send(userRepository.getUsers());
-});
-
-router.get('/:firstName', (req, res) => {
-  const foundUser = userRepository.getUserByFirstName(req.params.firstName);
-
-  if (!foundUser) {
-    throw new Error('User not found');
-  }
-
-  res.send(foundUser);
+  res.send("Test");
 });
 
 router.post(
-  '/',
-  body('firstName').notEmpty(),
-  body('lastName').notEmpty(),
-  body('password').notEmpty().isLength({ min: 5 }),
-  async (req, res) => {
-    validateBody(req);
+    '/login/:params',
+    body('username').notEmpty(),
+    body('password').notEmpty().isLength({ min: 8 }),
+    async (req, res) => {
+        console.log(req.params)
 
-    const existingUser = await userRepository.getUserByFirstName(req.body.firstName);
+      validateBody(req);
 
-    if (existingUser) {
-        throw new Error('Unable to create the user');
+      res.status(201).end();
     }
-
-    userRepository.createUser(req.body);
-    res.status(201).end();
-  }
-);
-
-router.put('/:id', (req, res) => {
-  userRepository.updateUser(req.params.id, req.body);
-  res.status(204).end();
-});
-
-router.delete('/:id', (req, res) => {
-  userRepository.deleteUser(req.params.id);
-  res.status(204).end();
-});
+  );
 
 exports.initializeRoutes = () => router;
