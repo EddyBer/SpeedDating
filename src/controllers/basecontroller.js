@@ -1,7 +1,7 @@
 class BaseController {
     constructor() {
         //M.AutoInit();
-        this.setBackButtonView('index')
+        this.setBackButtonView('connect')
         this.model = new Model()
     }
 

@@ -1,8 +1,8 @@
-<div>
+<div class="container">
     <form>
         <div class="mb-3">
             <label for="username" class="form-label">Pseudo</label>
-            <input type="text" class="form-control" id="username aria-describedby="emailHelp">
+            <input type="text" class="form-control" id="username" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">Nom</label>
@@ -13,17 +13,30 @@
           <input type="text" class="form-control" id="firstname" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
-            <label for="firstname" class="form-label">Mail</label>
-            <input type="email" class="form-control" id="firstname" aria-describedby="emailHelp">
+            <label for="age" class="form-label">Date de naissance</label>
+            <input type="date" class="form-control" id="age" aria-describedby="emailHelp">
           </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+            <label for="gender" class="form-label">Sexe</label>
+            <select class="form-select" aria-label="Default select example" id="gender">
+                <option value="1">Femme</option>
+                <option value="2">Homme</option>
+                <option value="3">Autres</option>
+              </select>
+          </div>
+
+        <div class="mb-3">
+            <label for="mail" class="form-label">Mail</label>
+            <input type="email" class="form-control" id="mail" aria-describedby="emailHelp">
+          </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Mot de passe</label>
+          <input type="password" class="form-control" id="password">
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Confirmer Votre Mot de passe</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <label for="confirmPassword" class="form-label">Confirmer Votre Mot de passe</label>
+            <input type="password" class="form-control" id="confirmPassword">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-primary" onclick="creationController.register()">Submit</button>
     </form>
 </div>

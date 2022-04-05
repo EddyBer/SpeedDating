@@ -1,7 +1,6 @@
 class connectController extends BaseController {
     constructor() {
         super()
-        this.validationBtn = $('#connection')
     }
 
     async login() {

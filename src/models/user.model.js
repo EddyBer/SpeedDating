@@ -11,6 +11,7 @@ exports.User = sequelize.define('USER', {
   pseudo: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique : true
   },
   firstName: {
     type: DataTypes.STRING,
@@ -20,13 +21,26 @@ exports.User = sequelize.define('USER', {
     type: DataTypes.STRING,
     allowNull: false
   },
+  birthdate: {
+    type: DataTypes.DATE,
+    allowNull: false
+  },
+  gender: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  mail: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
   password: {
     type: DataTypes.STRING,
     allowNull: false
   },
   roles: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true,
+    defaultValue : "MEMBER"
   }
 }, {
     freezeTableName:true

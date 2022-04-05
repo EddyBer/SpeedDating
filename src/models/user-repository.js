@@ -1,14 +1,20 @@
 const { users } = require('./db');
 const uuid = require('uuid');
 const {User} = require('../models/user.model')
+var  bcrypt = require('bcryptjs');
+var salt = bcrypt.genSaltSync(10);
 
-exports.getUsers = () => users;
+exports.getUsers = async () => {
+    const users = await User.findAll()
 
-exports.getUserByFirstName = async (firstName) => {
+    return users
+}
+
+exports.getUserByPseudo = async (pseudo) => {
 
     const user = await User.findOne({
         where: {
-          firstName: firstName
+            pseudo: pseudo
         }
       })
     return user
@@ -16,11 +22,15 @@ exports.getUserByFirstName = async (firstName) => {
 
 exports.createUser = async (body) => {
 
-    await User.create({pseudo:body.pseudo,
+    const hashpassword = await bcrypt.hash(body.password,salt)
+    console.log(hashpassword)
+    await User.create({pseudo:body.username,
                         firstName:body.firstName,
-                        lastName:body.lastName,
-                        password:body.password,
-                        role:body.roles})
+                        lastName:body.name,
+                        birthdate:body.age,
+                        gender:body.gender,
+                        mail:body.mail,
+                        password:hashpassword})
 };
 
 exports.updateUser = (id, data) => {

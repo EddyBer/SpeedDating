@@ -6,4 +6,8 @@ class Model {
     login(params) {
         return this.api.login(params)
     }
+
+    register(params) {
+        return this.api.register(params)
+    }
 }
