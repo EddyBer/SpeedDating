@@ -5,10 +5,6 @@ const router = express.Router();
 const userRepository = require('../models/user-repository');
 const { validateBody } = require('./validation/route.validator');
 
-router.get('/', (req, res) => {
-  res.send("Test");
-});
-
 router.get('/users'),
     async (req,res) => {
     

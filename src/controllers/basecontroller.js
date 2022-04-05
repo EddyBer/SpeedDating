@@ -1,8 +1,12 @@
 class BaseController {
     constructor() {
-        //M.AutoInit();
         this.setBackButtonView('connect')
         this.model = new Model()
+    }
+
+    toast(elemId) {
+        const toast = new bootstrap.Toast(document.getElementById(elemId))
+        toast.show()
     }
 
     setBackButtonView(view) {

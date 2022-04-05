@@ -5,6 +5,7 @@ class creationController extends BaseController {
     }
 
     async register() {
+        let isValid = true
         let username = $('#username')
         let name = $('#name')
         let firstName = $('#firstname')
@@ -15,17 +16,43 @@ class creationController extends BaseController {
         let confirmPassword = $('#confirmPassword')
 
         if (!username.value) {
-            alert('Veuillez saisir un pseudo')
-        } else if (!name.value) {
-            alert('Veuillez renseigner voter nom')
-        } else if (!firstName.value) {
-            alert('Veuillez renseigner voter prénom')
-        } else if (!gender.value) {
-            alert('Veuillez renseigner voter genre')
-        } else if (!password.value) {
-            alert('Veuillez renseigner un mot de passe')
-        } else if (password.value !== confirmPassword.value) {
-            alert('Les deux mots de passe sont différents')
+            username.focus()
+            username.className += " is-invalid"
+            isValid = false
+        } 
+        if (!name.value) {
+            name.focus()
+            name.className += " is-invalid"
+            isValid = false
+        }
+        if (!firstName.value) {
+            firstName.focus()
+            firstName.className += " is-invalid"
+            isValid = false
+        }
+        if (!date.value) {
+            date.focus()
+            date.className += " is-invalid"
+            isValid = false
+        }
+        if (!gender.value) {
+            gender.focus()
+            gender.className += " is-invalid"
+            isValid = false
+        }
+        if (!password.value) {
+            password.focus()
+            password.className += " is-invalid"
+            isValid = false
+        }
+        if (password.value !== confirmPassword.value) {
+            confirmPassword.focus()
+            confirmPassword.className += " is-invalid"
+            isValid = false
+        }
+        
+        if (!isValid) {
+            this.toast("error")
         } else {
 
             const params = JSON.stringify({
@@ -39,7 +66,12 @@ class creationController extends BaseController {
             confirmPassword : confirmPassword.value
             })
 
-            const newUser = await this.model.register(params) 
+            const newUser = await this.model.register(params)
+
+            if (!newUser) {
+                this.toast("success")
+            }
+            
         }
         
         
