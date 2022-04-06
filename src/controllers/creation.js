@@ -5,6 +5,7 @@ class creationController extends BaseController {
     }
 
     async register() {
+        let today = Date()
         let isValid = true
         let username = $('#username')
         let name = $('#name')
@@ -35,9 +36,19 @@ class creationController extends BaseController {
             date.className += " is-invalid"
             isValid = false
         }
+        // if (date.value > today.toLocaleDateString('us')) {
+        //     date.focus()
+        //     date.className += " is-invalid"
+        //     isValid = false
+        // }
         if (!gender.value) {
             gender.focus()
             gender.className += " is-invalid"
+            isValid = false
+        }
+        if (!mail.value) {
+            mail.focus()
+            mail.className += " is-invalid"
             isValid = false
         }
         if (!password.value) {
@@ -70,6 +81,7 @@ class creationController extends BaseController {
 
             if (!newUser) {
                 this.toast("success")
+                navigate('connect')
             }
             
         }

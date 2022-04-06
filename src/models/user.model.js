@@ -31,7 +31,8 @@ exports.User = sequelize.define('USER', {
   },
   mail: {
     type: DataTypes.STRING,
-    allowNull: true
+    allowNull: true,
+    unique : true
   },
   password: {
     type: DataTypes.STRING,

@@ -8,7 +8,7 @@ class connectController extends BaseController {
         let password = $('#password').value
 
         const params =JSON.stringify({
-            username : username,
+            mail : username,
             password : password
         })
 
@@ -18,6 +18,10 @@ class connectController extends BaseController {
             alert('Veuillez saisir un mot de passe')
         } else {
             const logged = await this.model.login(params)
+
+            if (logged.status === 204) {
+                navigate('home')
+            }
         }
     }
 }

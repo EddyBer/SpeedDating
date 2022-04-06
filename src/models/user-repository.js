@@ -20,6 +20,16 @@ exports.getUserByPseudo = async (pseudo) => {
     return user
 };
 
+exports.getUserByEmail = async (mail) => {
+
+    const user = await User.findOne({
+        where: {
+            mail: mail
+        }
+      })
+    return user
+};
+
 exports.createUser = async (body) => {
 
     const hashpassword = await bcrypt.hash(body.password,salt)
