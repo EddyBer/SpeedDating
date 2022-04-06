@@ -12,6 +12,14 @@ exports.createRencontre = async (body) => {
     })
 }
 
+exports.deleteRencontre = async (id) => {
+    await Rencontres.destroy({
+        where: {
+            id: id
+          }
+    })
+}
+
 exports.getAllById = async (id) => {
     return await Rencontres.findAll({
         where: {

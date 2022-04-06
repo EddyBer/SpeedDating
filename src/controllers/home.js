@@ -17,6 +17,8 @@ class homeController extends BaseController {
     }
 
     async deleteRencontre(id) {
+        console.log(id)
+        const deleted = await this.model.deleteRencontre(id)
 
     }
 

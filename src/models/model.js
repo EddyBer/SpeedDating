@@ -22,4 +22,9 @@ class Model {
         let res = await this.api.createRencontre(params)
         return res
     }
+
+    async deleteRencontre(id) {
+        let res = await this.api.deleteRencontre(id)
+        return res
+    }
 }

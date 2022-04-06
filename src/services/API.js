@@ -19,4 +19,9 @@ class API {
         let res =  await fetch(`http://localhost:5500/rencontres/create/${params}`, { method:'POST'})
         return res
     }
+
+    async deleteRencontre(id) {
+        let res =  await fetch(`http://localhost:5500/rencontres/delete/${id}`, { method:'DELETE'})
+        return res
+    }
 }
