@@ -2,7 +2,7 @@
 const { DataTypes } = require('sequelize');
 const {sequelize} = require('../db')
 
-exports.Personnes = sequelize.define('RENCONTRES', {
+exports.Rencontres = sequelize.define('RENCONTRES', {
   // Model attributes are defined here
   id: {
     type: DataTypes.UUID,
@@ -13,7 +13,11 @@ exports.Personnes = sequelize.define('RENCONTRES', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  birthdate: {
+  personne : {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  date: {
     type: DataTypes.DATE,
     allowNull: false
   },

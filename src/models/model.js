@@ -13,8 +13,13 @@ class Model {
         return res
     }
 
-    async getRencontres() {
-        let res = await this.api.getRencontres()
+    async getRencontres(id) {
+        let res = await this.api.getRencontres(id)
+        return res
+    }
+
+    async createRencontre(params) {
+        let res = await this.api.createRencontre(params)
         return res
     }
 }

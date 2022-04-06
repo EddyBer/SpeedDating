@@ -13,8 +13,6 @@ router.post('/login/:params',
     async (req, res) => {
         const parameters = JSON.parse(req.params['params'])
 
-        validateBody(req);
-
         let user = await userRepository.getUserByEmail(parameters.mail)
 
         if (!user) {
@@ -56,10 +54,32 @@ router.post('/register/:params',
         }
 })
 
-router.get('/rencontres',
+router.post('/rencontres/create/:params',
     async (req,res) => {
-        console.log('ici')
-        return
+        const parameters = JSON.parse(req.params['params'])
+
+        const newRencontres = await rencontresRepository.createRencontre(parameters)
+
+        if (newRencontres) {
+            res.status(400).send("Erreur lors de la création")
+            return;
+        } else {
+            res.status(201).end()
+        }
+})
+
+router.get('/rencontres/:id',
+    async (req,res) => {
+
+        const listOfRencontres = await rencontresRepository.getAllById(req.params.id)
+        
+        if (!listOfRencontres) {
+            res.status('204').send('Aucune rencontres trouvées')
+        } else {
+            res.json({listOfRencontres})
+            res.status('200').end()
+        }
+
 })
 
 exports.initializeRoutes = () => router;

@@ -10,8 +10,13 @@ class API {
         return res
     }
 
-    async getRencontres() {
-        let res =  await fetch(`http://localhost:5500/rencontres`, { method:'GET'})
+    async getRencontres(id) {
+        let res =  await fetch(`http://localhost:5500/rencontres/${id}`, { method:'GET'})
+        return res
+    }
+
+    async createRencontre(params) {
+        let res =  await fetch(`http://localhost:5500/rencontres/create/${params}`, { method:'POST'})
         return res
     }
 }
