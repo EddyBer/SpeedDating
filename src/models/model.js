@@ -3,11 +3,18 @@ class Model {
         this.api = new API()
     }
 
-    login(params) {
-        return this.api.login(params)
+    async login(params) {
+        let res = await this.api.login(params)
+        return res
     }
 
-    register(params) {
-        return this.api.register(params)
+    async register(params) {
+        let res = await this.api.register(params)
+        return res
+    }
+
+    async getRencontres() {
+        let res = await this.api.getRencontres()
+        return res
     }
 }

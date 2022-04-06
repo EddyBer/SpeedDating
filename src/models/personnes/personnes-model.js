@@ -1,17 +1,16 @@
 const { DataTypes } = require('sequelize');
-const {sequelize} = require('./db')
+const {sequelize} = require('../db')
 
-exports.User = sequelize.define('USER', {
+exports.Personnes = sequelize.define('PERSONNES', {
   // Model attributes are defined here
   id: {
     type: DataTypes.UUID,
     primaryKey:true,
     defaultValue: DataTypes.UUIDV4
   },
-  pseudo: {
+  user : {
     type: DataTypes.STRING,
-    allowNull: false,
-    unique : true
+    allowNull: false
   },
   firstName: {
     type: DataTypes.STRING,
@@ -28,20 +27,6 @@ exports.User = sequelize.define('USER', {
   gender: {
     type: DataTypes.STRING,
     allowNull: false
-  },
-  mail: {
-    type: DataTypes.STRING,
-    allowNull: true,
-    unique : true
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  roles: {
-    type: DataTypes.STRING,
-    allowNull: true,
-    defaultValue : "MEMBER"
   }
 }, {
     freezeTableName:true

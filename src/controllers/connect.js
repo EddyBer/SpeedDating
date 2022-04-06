@@ -17,10 +17,15 @@ class connectController extends BaseController {
         } else if (!password) {
             alert('Veuillez saisir un mot de passe')
         } else {
-            const logged = await this.model.login(params)
 
-            if (logged.status === 204) {
+            let logged = await this.model.login(params)
+
+            if (logged.ok) {
+                const token = await logged.json()
+                localStorage.setItem('Token',token.token)
                 navigate('home')
+            } else {
+                this.toast("error")
             }
         }
     }

@@ -1,6 +1,6 @@
-const { users } = require('./db');
+const { users } = require('../db');
 const uuid = require('uuid');
-const {User} = require('../models/user.model')
+const {User} = require('./user.model')
 var  bcrypt = require('bcryptjs');
 var salt = bcrypt.genSaltSync(10);
 
@@ -33,7 +33,7 @@ exports.getUserByEmail = async (mail) => {
 exports.createUser = async (body) => {
 
     const hashpassword = await bcrypt.hash(body.password,salt)
-    console.log(hashpassword)
+
     await User.create({pseudo:body.username,
                         firstName:body.firstName,
                         lastName:body.name,

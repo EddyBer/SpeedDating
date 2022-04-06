@@ -2,14 +2,12 @@ const express = require('express');
 const { body } = require('express-validator');
 const { param } = require('express/lib/request');
 const router = express.Router();
-const userRepository = require('../models/user-repository');
+const userRepository = require('../models/user/user-repository');
+const rencontresRepository = require('../models/Rencontres/rencontre-repository');
 const { validateBody } = require('./validation/route.validator');
+const { generateAuthToken, verifyToken } = require('../security/auth');
 var  bcrypt = require('bcryptjs');
-
-router.get('/users'),
-    async (req,res) => {
-    
-}
+const req = require('express/lib/request');
 
 router.post('/login/:params',
     async (req, res) => {
@@ -18,18 +16,23 @@ router.post('/login/:params',
         validateBody(req);
 
         let user = await userRepository.getUserByEmail(parameters.mail)
-        let isPassword = await bcrypt.compare(parameters.password,user.password)
-        console.log(parameters.password)
-        console.log(user.password)
 
-        if (!isPassword) {
+        if (!user) {
             res.status(401).send('Unauthorized');
+            return
+        } else {
+            let isPassword = await bcrypt.compare(parameters.password,user.password)
+
+            if (!isPassword) {
+                res.status(401).send('Unauthorized');
+                return;
+            }
+            const token = generateAuthToken(user.id, user.firstName, user.roles);
+    
+            res.json({ token });
+            res.status(204).end();
             return;
         }
-        const token = generateAuthToken(user.id, user.firstName, user.roles);
-
-        res.json({ token });
-        res.status(204).end();
 })
 
 router.post('/register/:params',
@@ -51,6 +54,12 @@ router.post('/register/:params',
         } else {
             res.status(201).send("Création effectué avec succès")
         }
+})
+
+router.get('/rencontres',
+    async (req,res) => {
+        console.log('ici')
+        return
 })
 
 exports.initializeRoutes = () => router;

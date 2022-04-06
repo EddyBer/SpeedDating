@@ -26,9 +26,14 @@ const initLoggerMiddlware = (app) => {
   });
 };
 
+const unprotected = [
+    '/login',
+    '/register'
+]
+
 const initJwtMiddleware = (app) => {
-    app.use(jwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] }).unless({ path: ['/login','/register'] }));
-  };
+    //app.use(jwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] }).unless({ path: unprotected }));
+};
 
 exports.initializeConfigMiddlewares = (app) => {
   initJsonHandlerMiddlware(app);
