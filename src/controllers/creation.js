@@ -36,11 +36,6 @@ class creationController extends BaseController {
             date.className += " is-invalid"
             isValid = false
         }
-        // if (date.value > today.toLocaleDateString('us')) {
-        //     date.focus()
-        //     date.className += " is-invalid"
-        //     isValid = false
-        // }
         if (!gender.value) {
             gender.focus()
             gender.className += " is-invalid"

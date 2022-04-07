@@ -4,18 +4,22 @@ class connectController extends BaseController {
     }
 
     async login() {
-        let username = $('#username').value
-        let password = $('#password').value
+        let username = $('#username')
+        let password = $('#password')
 
         const params =JSON.stringify({
-            mail : username,
-            password : password
+            mail : username.value,
+            password : password.value
         })
 
-        if (!username) {
-            alert('Veuillez saisir une adresse')
-        } else if (!password) {
-            alert('Veuillez saisir un mot de passe')
+        if (!username.value) {
+            username.focus()
+            username.className += " is-invalid"
+            this.toast("error")
+        } else if (!password.value) {
+            password.focus()
+            password.className += " is-invalid"
+            this.toast("error")
         } else {
 
             let logged = await this.model.login(params)
