@@ -25,6 +25,11 @@ class API {
         return res
     }
 
+    async updateRencontre(params) {
+        let res =  await fetch(`http://localhost:5500/rencontre/update/${params}`, { method:'PUT'})
+        return res
+    }
+
     async getPersonnes(id) {
         let res =  await fetch(`http://localhost:5500/personne/${id}`, { method:'GET'})
         return res

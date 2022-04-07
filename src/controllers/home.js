@@ -15,6 +15,31 @@ class homeController extends BaseController {
         this.myModal.show()
     }
 
+    formatDateISO(date) {
+        let tabDate = date.split('/')
+
+        let newDate = tabDate[2] + '-' + tabDate[1] + '-' + tabDate[0]
+
+        return newDate
+    }
+
+    openModalUpdate(id,nom,message,date,note) {
+        this.myModal2 = new bootstrap.Modal(document.getElementById('updateModal'), 'keyboard=true')
+        let inputNom =  document.getElementById('name-update')
+        let inputDate =  document.getElementById('date-update')
+        let inputMessage =  document.getElementById('message-update')
+        let inputNote =  document.getElementById('note-update')
+        let hiddenId =  document.getElementById('hiddenId')
+
+        hiddenId.innerHTML = id
+        inputNom.value = nom
+        inputMessage.value = message
+        inputDate.value = this.formatDateISO(date)
+        inputNote.value = note
+
+        this.myModal2.show()
+    }
+
     async deleteRencontre(id) {
 
         if (confirm("Voulez-vous vraiment supprimer cette rencontre ?")) {
@@ -26,8 +51,64 @@ class homeController extends BaseController {
         }
     }
 
-    async updateRencontre(id) {
+    async updateRencontre() {
+        const infosUser = this.parseJwt(localStorage.getItem('Token'))
+        const id = document.getElementById('hiddenId')
 
+        let nom =  document.getElementById('name-update')
+        let date =  document.getElementById('date-update')
+        let message =  document.getElementById('message-update')
+        let note =  document.getElementById('note-update')
+        let isValid = true
+
+        if (!nom.value) {
+            nom.className += " is-invalid"
+            isValid = false
+        } else {
+            const listOfPersonnes = await this.model.getPersonnes(infosUser.userId)
+
+            if (listOfPersonnes.ok) {
+                const liste = await listOfPersonnes.json()
+                const tab = []
+                liste.listOfPersonnes.forEach(elem => {
+                        tab.push(elem.lastName)
+                })
+
+                if (!tab.find(elem => elem.toUpperCase() === nom.value.toUpperCase())) {
+                    nom.className += " is-invalid"
+                    isValid = false
+                }
+            }
+        }
+        if (!date.value) {
+            date.className += " is-invalid"
+            isValid = false
+        }
+        if (message.value.length > 255) {
+            message.className += " is-invalid"
+            isValid = false
+        }
+        
+        if (isValid) {
+            const params = JSON.stringify({
+                id : id.innerHTML,
+                user : infosUser.userId,
+                nom : nom.value,
+                date : date.value,
+                message : message.value,
+                note : note.value
+            })
+
+            const updatedRencontre = await this.model.updateRencontre(params)
+
+            if (updatedRencontre.ok) {
+                this.myModal2.hide()
+                navigate('home')
+                this.toast('success')
+            } else {
+                this.toast("error")
+            }
+        }
     }
 
     async createRencontre() {
@@ -107,7 +188,7 @@ class homeController extends BaseController {
                                 <td>${date}</td>
                                 <td>${elem.note}/10</td>
                                 <td><i class="bi bi-trash" onclick="homeController.deleteRencontre('${elem.id}')"></i></td>
-                                <td><i class="bi bi-pencil" onclick="homeController.updateRencontre('${elem.id}')"></i></td>
+                                <td><i class="bi bi-pencil" onclick="homeController.openModalUpdate('${elem.id}','${elem.personne}','${elem.commentaire}','${date}','${elem.note}')"></i></td>
                             </tr>`
             })
 

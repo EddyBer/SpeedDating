@@ -28,6 +28,11 @@ class Model {
         return res
     }
 
+    async updateRencontre(params) {
+        let res = await this.api.updateRencontre(params)
+        return res
+    }
+
     async getPersonnes(id) {
         let res = await this.api.getPersonnes(id)
         return res

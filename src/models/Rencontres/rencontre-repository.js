@@ -12,6 +12,18 @@ exports.createRencontre = async (body) => {
     })
 }
 
+exports.updateRencontre = async (body) => {
+    await Rencontres.update({
+        personne : body.nom,
+        date : body.date,
+        note : body.note,
+        commentaire : body.message},
+        { where: {
+            id: body.id
+          }
+    })
+}
+
 exports.deleteRencontre = async (id) => {
     await Rencontres.destroy({
         where: {

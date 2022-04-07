@@ -81,6 +81,20 @@ router.delete('/rencontres/delete/:id',
         }
 })
 
+router.put('/rencontre/update/:params',
+    async (req,res) => {
+        const parameters = JSON.parse(req.params['params'])
+
+        const updatedRencontre = await rencontresRepository.updateRencontre(parameters)
+
+        if (updatedRencontre) {
+            res.status(400).send("Erreur lors de la mise à jour")
+            return;
+        } else {
+            res.status(204).end()
+        }
+})
+
 router.get('/rencontres/:id',
     async (req,res) => {
 
