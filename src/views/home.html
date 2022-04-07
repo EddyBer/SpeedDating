@@ -7,10 +7,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" >Accueil</a>
+            <a class="nav-link active" aria-current="page" onclick="navigate('home')">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" >Mon profil</a>
+            <a class="nav-link" onclick="navigate('personnes')">Mon profil</a>
           </li>
         </ul>
       </div>
@@ -27,19 +27,20 @@
         </button>
     </div>
     <div class="d-flex justify-content-center" id="rencontres">
-    <table class="table-responsive">
-        <thead>
-            <tr>
-                <th scope="col">Nom</th>
-                <th scope="col">Commentaire</th>
-                <th scope="col">Date</th>
-                <th scope="col">Note</th>
-                <th scope="col"><i class="bi bi-trash"></i></th>
-            </tr>
-        </thead>
-        <tbody id="rencontre">
-        </tbody>
-    </table>
+        <table class="table-responsive" style="margin-top:2%;">
+            <thead style="background-color: #2a638b;">
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Commentaire</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Note</th>
+                    <th scope="col"><i class="bi bi-trash"></i></th>
+                    <th scope="col"><i class="bi bi-pencil"></i></th>
+                </tr>
+            </thead>
+            <tbody id="rencontre">
+            </tbody>
+        </table>
     </div>
 </div>
 
@@ -62,7 +63,7 @@
               <input type="date" class="form-control" id="date-rencontre"></input>
             </div>
             <div class="mb-3">
-                <label for="message-text" class="col-form-label">Commentaire</label>
+                <label for="message-text" class="col-form-label">Commentaire (255 caractères max)</label>
                 <textarea class="form-control" id="message-rencontre"></textarea>
             </div>
             <div class="mb-3">
@@ -82,7 +83,7 @@
   <div class="position-fixed bottom-0 end-50" style="z-index: 11">
     <div id="success" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-body">
-            Information(s) manquante(s)
+            Rencontre créé
         </div>
     </div>
 </div>

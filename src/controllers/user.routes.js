@@ -70,13 +70,13 @@ router.post('/rencontres/create/:params',
 
 router.delete('/rencontres/delete/:id',
     async (req,res) => {
-console.log(req.body)
+
         const deleted = await rencontresRepository.deleteRencontre(req.params.id)
-console.log(deleted)
+
         if (!deleted) {
-            res.status('400').send('Erreur lors de la suppression')
-        } else {
             res.status('200').end()
+        } else {
+            res.status('400').send('Erreur lors de la suppression')
         }
 })
 
