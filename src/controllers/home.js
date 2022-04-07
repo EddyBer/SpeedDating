@@ -37,10 +37,28 @@ class homeController extends BaseController {
         let note = $('#note-rencontre')
         let isValid = true
 
+        const infosUser = this.parseJwt(localStorage.getItem('Token'))
+
         if (!nom.value) {
             nom.className += " is-invalid"
             isValid = false
+        } else {
+            const listOfPersonnes = await this.model.getPersonnes(infosUser.userId)
+
+            if (listOfPersonnes.ok) {
+                const liste = await listOfPersonnes.json()
+                const tab = []
+                liste.listOfPersonnes.forEach(elem => {
+                        tab.push(elem.lastName)
+                })
+
+                if (!tab.find(elem => elem.toUpperCase() === nom.value.toUpperCase())) {
+                    nom.className += " is-invalid"
+                    isValid = false
+                }
+            }
         }
+        
         if (!date.value) {
             date.className += " is-invalid"
             isValid = false
@@ -49,8 +67,6 @@ class homeController extends BaseController {
             commentaire.className += " is-invalid"
             isValid = false
         }
-
-        const infosUser = this.parseJwt(localStorage.getItem('Token'))
 
         if (isValid) {
             const params = JSON.stringify({
