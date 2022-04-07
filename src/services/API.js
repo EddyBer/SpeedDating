@@ -24,4 +24,19 @@ class API {
         let res =  await fetch(`http://localhost:5500/rencontres/delete/${id}`, { method:'DELETE'})
         return res
     }
+
+    async getPersonnes(id) {
+        let res =  await fetch(`http://localhost:5500/personne/${id}`, { method:'GET'})
+        return res
+    }
+
+    async createPersonne(params) {
+        let res =  await fetch(`http://localhost:5500/personne/create/${params}`, { method:'POST'})
+        return res
+    }
+
+    async deletePersonne(id) {
+        let res =  await fetch(`http://localhost:5500/personne/delete/${id}`, { method:'DELETE'})
+        return res
+    }
 }

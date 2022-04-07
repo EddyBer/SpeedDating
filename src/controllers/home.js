@@ -2,7 +2,6 @@ class homeController extends BaseController {
     constructor() {
         super()
         this.getRencontre()
-        //this.setBackButtonView('connect')
     }
 
     parseJwt(token) {
@@ -92,7 +91,7 @@ class homeController extends BaseController {
                                 <td>${date}</td>
                                 <td>${elem.note}/10</td>
                                 <td><i class="bi bi-trash" onclick="homeController.deleteRencontre('${elem.id}')"></i></td>
-                                <td><i class="bi bi-trash" onclick="homeController.updateRencontre('${elem.id}')"></i></td>
+                                <td><i class="bi bi-pencil" onclick="homeController.updateRencontre('${elem.id}')"></i></td>
                             </tr>`
             })
 

@@ -27,4 +27,19 @@ class Model {
         let res = await this.api.deleteRencontre(id)
         return res
     }
+
+    async getPersonnes(id) {
+        let res = await this.api.getPersonnes(id)
+        return res
+    }
+
+    async createPersonne(params) {
+        let res = await this.api.createPersonne(params)
+        return res
+    }
+
+    async deletePersonne(id) {
+        let res = await this.api.deletePersonne(id)
+        return res
+    }
 }

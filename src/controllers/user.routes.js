@@ -4,6 +4,7 @@ const { param } = require('express/lib/request');
 const router = express.Router();
 const userRepository = require('../models/user/user-repository');
 const rencontresRepository = require('../models/Rencontres/rencontre-repository');
+const personneRepository = require('../models/personnes/personnes-repository');
 const { validateBody } = require('./validation/route.validator');
 const { generateAuthToken, verifyToken } = require('../security/auth');
 var  bcrypt = require('bcryptjs');
@@ -94,6 +95,45 @@ router.get('/rencontres/:id',
 
 })
 
+router.get('/personne/:id',
+    async (req,res) => {
+
+        const listOfPersonnes = await personneRepository.getAllById(req.params.id)
+        
+        if (!listOfPersonnes) {
+            res.status('204').send('Aucune rencontres trouvées')
+        } else {
+            res.json({listOfPersonnes})
+            res.status('200').end()
+        }
+
+})
+
+router.post('/personne/create/:params',
+    async (req,res) => {
+        const parameters = JSON.parse(req.params['params'])
+
+        const newPersonne = await personneRepository.createPersonne(parameters)
+
+        if (newPersonne) {
+            res.status(400).send("Erreur lors de la création")
+            return;
+        } else {
+            res.status(201).end()
+        }
+})
+
+router.delete('/personne/delete/:id',
+    async (req,res) => {
+
+        const deleted = await personneRepository.deletePersonne(req.params.id)
+
+        if (!deleted) {
+            res.status('200').end()
+        } else {
+            res.status('400').send('Erreur lors de la suppression')
+        }
+})
 
 
 

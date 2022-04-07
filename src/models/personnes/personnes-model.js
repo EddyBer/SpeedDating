@@ -25,7 +25,7 @@ exports.Personnes = sequelize.define('PERSONNES', {
     allowNull: false
   },
   gender: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false
   }
 }, {
