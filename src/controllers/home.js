@@ -17,9 +17,14 @@ class homeController extends BaseController {
     }
 
     async deleteRencontre(id) {
-        console.log(id)
-        const deleted = await this.model.deleteRencontre(id)
 
+        if (confirm("Voulez-vous vraiment supprimer cette rencontre ?")) {
+            const deleted = await this.model.deleteRencontre(id)
+
+            if (deleted.ok) {
+                navigate('home')
+            }
+        }
     }
 
     async updateRencontre(id) {
@@ -41,9 +46,13 @@ class homeController extends BaseController {
             date.className += " is-invalid"
             isValid = false
         }
+        if (commentaire.value.length > 255) {
+            commentaire.className += " is-invalid"
+            isValid = false
+        }
 
         const infosUser = this.parseJwt(localStorage.getItem('Token'))
-        
+
         if (isValid) {
             const params = JSON.stringify({
                 user : infosUser.userId,
@@ -58,6 +67,7 @@ class homeController extends BaseController {
             if (newRencontres.ok) {
                 this.myModal.hide()
                 navigate('home')
+                this.toast('success')
             } else {
                 this.toast("error")
             }
@@ -70,19 +80,19 @@ class homeController extends BaseController {
 
         let listOfRencontres = await this.model.getRencontres(infosUser.userId)
 
-        
-
         if (listOfRencontres.ok) {
             const liste = await listOfRencontres.json()
             let tbody = document.getElementById('rencontre')
 
             liste.listOfRencontres.forEach(elem => {
-                content += `<tr>
+                let date = new Date (elem.date).toLocaleDateString()
+                content += `<tr style="word-break:break-word">
                                 <td>${elem.personne}</td>
-                                <td>${elem.commentaire}</td>
-                                <td>${elem.date}</td>
-                                <td>${elem.note}</td>
+                                <td class="overflow-auto">${elem.commentaire}</td>
+                                <td>${date}</td>
+                                <td>${elem.note}/10</td>
                                 <td><i class="bi bi-trash" onclick="homeController.deleteRencontre('${elem.id}')"></i></td>
+                                <td><i class="bi bi-trash" onclick="homeController.updateRencontre('${elem.id}')"></i></td>
                             </tr>`
             })
 
