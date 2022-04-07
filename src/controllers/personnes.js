@@ -15,6 +15,17 @@ class personnesController extends BaseController {
         this.myModal.show()
     }
 
+    async deletePersonne(id) {
+
+        if (confirm("Voulez-vous vraiment supprimer cette rencontre ?")) {
+            const deleted = await this.model.deletePersonne(id)
+
+            if (deleted.ok) {
+                navigate('personnes')
+            }
+        }
+    }
+
     async createPersonne() {
         let nom = $('#name-personne')
         let prenom = $('#firstname-personne')

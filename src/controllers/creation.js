@@ -78,8 +78,8 @@ class creationController extends BaseController {
             })
 
             const newUser = await this.model.register(params)
-
-            if (!newUser) {
+            
+            if (newUser.ok) {
                 this.toast("success")
                 navigate('connect')
             }
