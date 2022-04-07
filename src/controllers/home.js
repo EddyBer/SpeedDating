@@ -53,6 +53,7 @@ class homeController extends BaseController {
 
     async updateRencontre() {
         const infosUser = this.parseJwt(localStorage.getItem('Token'))
+        let personneId = ""
         const id = document.getElementById('hiddenId')
 
         let nom =  document.getElementById('name-update')
@@ -71,15 +72,20 @@ class homeController extends BaseController {
                 const liste = await listOfPersonnes.json()
                 const tab = []
                 liste.listOfPersonnes.forEach(elem => {
-                        tab.push(elem.lastName)
+                        tab.push([elem.lastName, elem.id])
                 })
 
-                if (!tab.find(elem => elem.toUpperCase() === nom.value.toUpperCase())) {
+                tab.forEach (elem => {
+                if (!elem[0].toUpperCase() === nom.value.toUpperCase()) {
                     nom.className += " is-invalid"
                     isValid = false
+                } else {
+                    personneId = elem[1]
                 }
+                })
             }
         }
+    
         if (!date.value) {
             date.className += " is-invalid"
             isValid = false
@@ -88,12 +94,13 @@ class homeController extends BaseController {
             message.className += " is-invalid"
             isValid = false
         }
-        
+
         if (isValid) {
             const params = JSON.stringify({
                 id : id.innerHTML,
                 user : infosUser.userId,
                 nom : nom.value,
+                personneId : personneId,
                 date : date.value,
                 message : message.value,
                 note : note.value
@@ -113,6 +120,7 @@ class homeController extends BaseController {
 
     async createRencontre() {
         let nom = $('#name-rencontre')
+        let personneId = ""
         let date = $('#date-rencontre')
         let commentaire = $('#message-rencontre')
         let note = $('#note-rencontre')
@@ -130,13 +138,17 @@ class homeController extends BaseController {
                 const liste = await listOfPersonnes.json()
                 const tab = []
                 liste.listOfPersonnes.forEach(elem => {
-                        tab.push(elem.lastName)
+                        tab.push([elem.lastName, elem.id])
                 })
 
-                if (!tab.find(elem => elem.toUpperCase() === nom.value.toUpperCase())) {
+                tab.forEach (elem => {
+                if (!elem[0].toUpperCase() === nom.value.toUpperCase()) {
                     nom.className += " is-invalid"
                     isValid = false
+                } else {
+                    personneId = elem[1]
                 }
+                })
             }
         }
         
@@ -153,6 +165,7 @@ class homeController extends BaseController {
             const params = JSON.stringify({
                 user : infosUser.userId,
                 nom : nom.value,
+                personneId : personneId,
                 date : date.value,
                 note : note.value,
                 commentaire : commentaire.value

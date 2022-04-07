@@ -25,6 +25,11 @@ class API {
         return res
     }
 
+    async deleteRencontreFromPersonne(id) {
+        let res =  await fetch(`http://localhost:5500/rencontres/deleteall/${id}`, { method:'DELETE'})
+        return res
+    }
+
     async updateRencontre(params) {
         let res =  await fetch(`http://localhost:5500/rencontre/update/${params}`, { method:'PUT'})
         return res

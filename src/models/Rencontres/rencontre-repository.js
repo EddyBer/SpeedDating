@@ -6,6 +6,7 @@ exports.createRencontre = async (body) => {
     await Rencontres.create({
         user : body.user,
         personne : body.nom,
+        personneId : body.personneId,
         date : body.date,
         note : body.note,
         commentaire : body.commentaire
@@ -15,6 +16,7 @@ exports.createRencontre = async (body) => {
 exports.updateRencontre = async (body) => {
     await Rencontres.update({
         personne : body.nom,
+        personneId : body.personneId,
         date : body.date,
         note : body.note,
         commentaire : body.message},
@@ -28,6 +30,14 @@ exports.deleteRencontre = async (id) => {
     await Rencontres.destroy({
         where: {
             id: id
+          }
+    })
+}
+
+exports.deleteRencontreFromPersonne = async (id) => {
+    await Rencontres.destroy({
+        where: {
+            personneId: id
           }
     })
 }

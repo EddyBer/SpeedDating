@@ -17,6 +17,10 @@ exports.Rencontres = sequelize.define('RENCONTRES', {
     type: DataTypes.STRING,
     allowNull: false
   },
+  personneId : {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   date: {
     type: DataTypes.DATE,
     allowNull: false

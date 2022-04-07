@@ -96,9 +96,11 @@ class personnesController extends BaseController {
 
         if (confirm("Voulez-vous vraiment supprimer cette rencontre ?")) {
             const deleted = await this.model.deletePersonne(id)
-
             if (deleted.ok) {
-                navigate('personnes')
+                const rencontre = await this.model.deleteRencontreFromPersonne(id)
+                if (rencontre.ok) {
+                     navigate('personnes')
+                }
             }
         }
     }
