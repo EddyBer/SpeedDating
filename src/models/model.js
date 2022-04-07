@@ -42,4 +42,9 @@ class Model {
         let res = await this.api.deletePersonne(id)
         return res
     }
+
+    async updatePersonne(params) {
+        let res = await this.api.updatePersonne(params)
+        return res
+    }
 }

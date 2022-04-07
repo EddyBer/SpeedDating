@@ -39,4 +39,9 @@ class API {
         let res =  await fetch(`http://localhost:5500/personne/delete/${id}`, { method:'DELETE'})
         return res
     }
+
+    async updatePersonne(params) {
+        let res =  await fetch(`http://localhost:5500/personne/update/${params}`, { method:'PUT'})
+        return res
+    }
 }

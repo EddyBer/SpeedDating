@@ -135,6 +135,20 @@ router.delete('/personne/delete/:id',
         }
 })
 
+router.put('/personne/update/:params',
+    async (req,res) => {
+        const parameters = JSON.parse(req.params['params'])
+
+        const updatedewPersonne = await personneRepository.updatePersonne(parameters)
+
+        if (updatedewPersonne) {
+            res.status(400).send("Erreur lors de la mise à jour")
+            return;
+        } else {
+            res.status(204).end()
+        }
+})
+
 
 
 exports.initializeRoutes = () => router;

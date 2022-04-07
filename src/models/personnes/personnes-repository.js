@@ -20,6 +20,18 @@ exports.deletePersonne = async (id) => {
     })
 }
 
+exports.updatePersonne = async (body) => {
+    await Personnes.update({
+        firstName : body.prenom,
+        lastName : body.nom,
+        birthdate : body.date,
+        gender : body.gender},
+        { where: {
+            id: body.id
+          }
+    })
+}
+
 exports.getAllById = async (id) => {
     return await Personnes.findAll({
         where: {
