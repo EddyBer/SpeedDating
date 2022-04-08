@@ -81,18 +81,6 @@ router.delete('/rencontres/delete/:id',
         }
 })
 
-router.delete('/rencontres/deleteall/:id',
-    async (req,res) => {
-
-        const deleted = await rencontresRepository.deleteRencontreFromPersonne(req.params.id)
-
-        if (!deleted) {
-            res.status('200').end()
-        } else {
-            res.status('400').send('Erreur lors de la suppression')
-        }
-})
-
 router.put('/rencontre/update/:params',
     async (req,res) => {
         const parameters = JSON.parse(req.params['params'])

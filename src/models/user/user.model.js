@@ -1,5 +1,7 @@
 const { DataTypes } = require('sequelize');
 const {sequelize} = require('../db')
+const {Rencontres} = require('../Rencontres/rencontres-model')
+const {Personnes} = require('../personnes/personnes-model')
 
 exports.User = sequelize.define('USER', {
   // Model attributes are defined here
@@ -47,3 +49,9 @@ exports.User = sequelize.define('USER', {
     freezeTableName:true
 });
 
+this.User.hasMany(Personnes, {
+    foreignKey: 'user'
+})
+this.User.hasMany(Rencontres, {
+    foreignKey: 'user'
+})

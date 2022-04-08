@@ -34,14 +34,6 @@ exports.deleteRencontre = async (id) => {
     })
 }
 
-exports.deleteRencontreFromPersonne = async (id) => {
-    await Rencontres.destroy({
-        where: {
-            personneId: id
-          }
-    })
-}
-
 exports.getAllById = async (id) => {
     return await Rencontres.findAll({
         where: {

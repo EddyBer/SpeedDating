@@ -1,6 +1,7 @@
 
 const { DataTypes } = require('sequelize');
 const {sequelize} = require('../db')
+const {User} = require('../user/user.model')
 
 exports.Rencontres = sequelize.define('RENCONTRES', {
   // Model attributes are defined here
@@ -10,7 +11,7 @@ exports.Rencontres = sequelize.define('RENCONTRES', {
     defaultValue: DataTypes.UUIDV4
   },
   user : {
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
     allowNull: false
   },
   personne : {
@@ -18,7 +19,7 @@ exports.Rencontres = sequelize.define('RENCONTRES', {
     allowNull: false
   },
   personneId : {
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
     allowNull: false
   },
   date: {
@@ -37,4 +38,3 @@ exports.Rencontres = sequelize.define('RENCONTRES', {
 }, {
     freezeTableName:true
 });
-

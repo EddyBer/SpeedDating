@@ -55,11 +55,11 @@
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Nom</label>
+              <label for="recipient-name" class="col-form-label">Name</label>
               <input type="text" class="form-control" id="name-personne">
             </div>
             <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Prénom</label>
+                <label for="recipient-name" class="col-form-label">Firstname</label>
                 <input type="text" class="form-control" id="firstname-personne">
               </div>
             <div class="mb-3">
@@ -67,18 +67,18 @@
               <input type="date" class="form-control" id="date-personne"></input>
             </div>
             <div class="mb-3">
-                <label for="gender" class="form-label">Sexe</label>
+                <label for="gender" class="form-label">Gender</label>
                 <select class="form-select" aria-label="Default select example" id="gender">
-                    <option value="1">Femme</option>
-                    <option value="2">Homme</option>
-                    <option value="3">Autres</option>
+                    <option value="1">Women</option>
+                    <option value="2">Men</option>
+                    <option value="3">Others</option>
                   </select>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button id="validButton"type="button" class="btn btn-primary" onclick="personnesController.createPersonne()">Ajouter personne</button>
+          <button id="validButton"type="button" class="btn btn-primary" onclick="personnesController.createPersonne()">Add people</button>
         </div>
       </div>
     </div>
@@ -88,18 +88,18 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modfier une personne</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Modify informations</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="d-none" id="hiddenId"></div>
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Nom</label>
+              <label for="recipient-name" class="col-form-label">Name</label>
               <input type="text" class="form-control" id="name-update">
             </div>
             <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Prénom</label>
+                <label for="recipient-name" class="col-form-label">Firstname</label>
                 <input type="text" class="form-control" id="firstname-update">
               </div>
             <div class="mb-3">
@@ -107,18 +107,18 @@
               <input type="date" class="form-control" id="date-update"></input>
             </div>
             <div class="mb-3">
-                <label for="gender" class="form-label">Sexe</label>
+                <label for="gender" class="form-label">Gender</label>
                 <select class="form-select" aria-label="Default select example" id="gender-update">
-                    <option value="1">Femme</option>
-                    <option value="2">Homme</option>
-                    <option value="3">Autres</option>
+                    <option value="1">Women</option>
+                    <option value="2">Men</option>
+                    <option value="3">Others</option>
                   </select>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button id="validButton"type="button" class="btn btn-primary" onclick="personnesController.updatePersonne()">Modifier personne</button>
+          <button id="validButton"type="button" class="btn btn-primary" onclick="personnesController.updatePersonne()">Modify informations</button>
         </div>
       </div>
     </div>
@@ -129,7 +129,7 @@
   <div class="position-fixed bottom-0 end-50" style="z-index: 11">
     <div id="success" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-body">
-            Rencontre créé
+            Person add
         </div>
     </div>
 </div>
@@ -137,7 +137,7 @@
 <div class="position-fixed bottom-0 end-50" style="z-index: 11">
     <div id="error" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-body">
-            Information(s) manquante(s)
+            Missing information(s)
         </div>
     </div>
 </div>

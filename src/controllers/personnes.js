@@ -54,7 +54,7 @@ class personnesController extends BaseController {
             isValid = false
         }
 
-        const infosUser = parseJwt(localStorage.getItem('Token'))
+        const infosUser = this.parseJwt(localStorage.getItem('Token'))
 
         if (isValid) {
             const params = JSON.stringify({
@@ -79,14 +79,10 @@ class personnesController extends BaseController {
     }
 
     async deletePersonne(id) {
-
         if (confirm("Voulez-vous vraiment supprimer cette rencontre ?")) {
             const deleted = await this.model.deletePersonne(id)
             if (deleted.ok) {
-                const rencontre = await this.model.deleteRencontreFromPersonne(id)
-                if (rencontre.ok) {
-                     navigate('personnes')
-                }
+                navigate('personnes')
             }
         }
     }
@@ -111,7 +107,7 @@ class personnesController extends BaseController {
             isValid = false
         }
 
-        const infosUser = parseJwt(localStorage.getItem('Token'))
+        const infosUser = this.parseJwt(localStorage.getItem('Token'))
 
         if (isValid) {
             const params = JSON.stringify({
@@ -136,7 +132,7 @@ class personnesController extends BaseController {
 
     async getPersonnes() {
         let content = ''
-        const infosUser = parseJwt(localStorage.getItem('Token'))
+        const infosUser = this.parseJwt(localStorage.getItem('Token'))
 
         let listOfPersonnes = await this.model.getPersonnes(infosUser.userId)
 

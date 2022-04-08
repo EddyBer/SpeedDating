@@ -28,11 +28,6 @@ class Model {
         return res
     }
 
-    async deleteRencontreFromPersonne(id) {
-        let res = await this.api.deleteRencontreFromPersonne(id)
-        return res
-    }
-
     async updateRencontre(params) {
         let res = await this.api.updateRencontre(params)
         return res
