@@ -7,13 +7,13 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" onclick="navigate('home')">Accueil</a>
+            <a class="nav-link active" aria-current="page" onclick="navigate('home')">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" onclick="navigate('personnes')">Mon profil</a>
+            <a class="nav-link" onclick="navigate('personnes')">My profil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" onclick="navigate('connect')">Déconnexion</a>
+            <a class="nav-link" onclick="navigate('connect')">Logout</a>
           </li>
         </ul>
       </div>
@@ -24,17 +24,17 @@
 
 <div class="container-fluid">
     <div class="">
-        <h1>Vos rencontres</h1>
+        <h1>My dates</h1>
         <button id="openModal" type="button" class="btn btn-primary" onclick="homeController.openModal()">
-            Nouvelle rencontre
+            New date
         </button>
     </div>
     <div class="d-flex justify-content-center" id="rencontres">
         <table class="table-responsive" style="margin-top:2%;width: 100%;">
             <thead style="background-color: #2a638b;height: 50px;">
                 <tr style="text-align: center;">
-                    <th scope="col">Nom</th>
-                    <th scope="col">Commentaire</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Commentary</th>
                     <th scope="col">Date</th>
                     <th scope="col">Note</th>
                     <th scope="col"><i class="bi bi-trash"></i></th>
