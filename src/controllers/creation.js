@@ -2,65 +2,49 @@ class creationController extends BaseController {
     constructor() {
         super()
         this.setBackButtonView('connect')
+        this.username = $('#username')
+        this.name = $('#name')
+        this.firstName = $('#firstname')
+        this.date = $('#age')
+        this.gender = $('#gender')
+        this.mail = $('#email')
+        this.password = $('#password')
+        this.confirmPassword = $('#confirmPassword')
+    }
+
+    validForm() {
+        let isValid = true
+
+        if (!this.checkInput(this.username)) { isValid = false }
+        if (!this.checkInput(this.date)) { isValid = false }
+        if (!this.checkInput(this.mail)) { 
+            isValid = false 
+        } else { 
+            if (!this.validateEmail(this.mail.value)) {
+                isValid = false
+            }
+        }
+        if (!this.checkInput(this.password)) { isValid = false }
+        if (!this.checkInput(this.confirmPassword)) { isValid = false }
+        if (this.password.value !== this.confirmPassword.value) { isValid = false }
+
+        return isValid
     }
 
     async register() {
-        let today = Date()
-        let isValid = true
-        let username = $('#username')
-        let name = $('#name')
-        let firstName = $('#firstname')
-        let date = $('#age')
-        let gender = $('#gender')
-        let mail = $('#mail')
-        let password = $('#password')
-        let confirmPassword = $('#confirmPassword')
 
-        if (!username.value) {
-            username.focus()
-            username.className += " is-invalid"
-            isValid = false
-        }
-        if (!date.value) {
-            date.focus()
-            date.className += " is-invalid"
-            isValid = false
-        }
-        if (!gender.value) {
-            gender.focus()
-            gender.className += " is-invalid"
-            isValid = false
-        }
-        if (!mail.value) {
-            mail.focus()
-            mail.className += " is-invalid"
-            isValid = false
-        }
-        if (!password.value) {
-            password.focus()
-            password.className += " is-invalid"
-            isValid = false
-        }
-        if (password.value !== confirmPassword.value) {
-            confirmPassword.focus()
-            confirmPassword.className += " is-invalid"
-            isValid = false
-        }
-        
-        if (!isValid) {
-            this.toast("error")
-        } else {
+        if (this.validForm()) {
 
             const params = JSON.stringify({
-            username : username.value,
-            name : name.value,
-            firstName : firstName.value,
-            age : date.value,
-            gender : gender.value,
-            mail:mail.value,
-            password : password.value,
-            confirmPassword : confirmPassword.value
-            })
+                username : this.username.value,
+                name : this.name.value,
+                firstName : this.firstName.value,
+                age : this.date.value,
+                gender : this.gender.value,
+                mail: this.mail.value,
+                password : this.password.value,
+                confirmPassword : this.confirmPassword.value
+                })
 
             const newUser = await this.model.register(params)
             
@@ -68,10 +52,9 @@ class creationController extends BaseController {
                 this.toast("success")
                 navigate('connect')
             }
-            
+        } else {
+            this.toast("error")
         }
-        
-        
     }
 
 }

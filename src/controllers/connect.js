@@ -2,6 +2,8 @@ class connectController extends BaseController {
     constructor() {
         super()
         this.refreshConnection()
+        this.username = $('#email')
+        this.password = $('#password')
     }
 
     refreshConnection() {
@@ -10,17 +12,23 @@ class connectController extends BaseController {
         }
     }
 
+    validForm() {
+        let isValid = true
+
+        if (!this.checkInput(this.username)) { isValid = false }
+        if (!this.checkInput(this.password)) { isValid = false }
+
+        return isValid
+    }
+
     async login() {
         
-        let username = $('#username')
-        let password = $('#password')
-
         const params =JSON.stringify({
-            mail : username.value,
-            password : password.value
+            mail : this.username.value,
+            password : this.password.value
         })
 
-        if (this.checkInput(username) && this.checkInput(password) && this.validateEmail(username.value)) {
+        if (this.validForm()) {
 
             let logged = await this.model.login(params)
 

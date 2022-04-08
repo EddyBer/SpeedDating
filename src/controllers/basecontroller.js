@@ -31,10 +31,17 @@ class BaseController {
 
     checkInput(elem) {
         let isValid = true
+        
         if (!elem.value) {
             elem.focus()
             elem.className += " is-invalid"
             isValid = false
+        } else if (elem.id === "email") {
+            if (!this.validateEmail(email.value)) {
+                elem.focus()
+                elem.className += " is-invalid"
+                isValid = false
+            }
         } else {
             if (elem.classList.contains('is-invalid')) {
                 elem.classList.remove("is-invalid");
