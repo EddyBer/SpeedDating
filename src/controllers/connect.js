@@ -12,7 +12,6 @@ class connectController extends BaseController {
 
     async login() {
         
-
         let username = $('#username')
         let password = $('#password')
 
@@ -21,15 +20,7 @@ class connectController extends BaseController {
             password : password.value
         })
 
-        if (!username.value) {
-            username.focus()
-            username.className += " is-invalid"
-            this.toast("error")
-        } else if (!password.value) {
-            password.focus()
-            password.className += " is-invalid"
-            this.toast("error")
-        } else {
+        if (this.checkInput(username) && this.checkInput(password) && this.validateEmail(username.value)) {
 
             let logged = await this.model.login(params)
 
@@ -40,6 +31,8 @@ class connectController extends BaseController {
             } else {
                 this.toast("error")
             }
+        } else {
+            this.toast("error")
         }
     }
 }

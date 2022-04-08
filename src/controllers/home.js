@@ -4,23 +4,9 @@ class homeController extends BaseController {
         this.getRencontre()
     }
 
-    parseJwt(token) {
-        var base64Url = token.split('.')[1];
-        var base64 = base64Url.replace('-', '+').replace('_', '/');
-        return JSON.parse(window.atob(base64));
-    }
-
     openModal() {
         this.myModal = new bootstrap.Modal(document.getElementById('createModal'), 'keyboard=true')
         this.myModal.show()
-    }
-
-    formatDateISO(date) {
-        let tabDate = date.split('/')
-
-        let newDate = tabDate[2] + '-' + tabDate[1] + '-' + tabDate[0]
-
-        return newDate
     }
 
     openModalUpdate(id,nom,message,date,note) {
@@ -34,7 +20,7 @@ class homeController extends BaseController {
         hiddenId.innerHTML = id
         inputNom.value = nom
         inputMessage.value = message
-        inputDate.value = this.formatDateISO(date)
+        inputDate.value = formatDateISO(date)
         inputNote.value = note
 
         this.myModal2.show()

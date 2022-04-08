@@ -4,23 +4,9 @@ class personnesController extends BaseController {
         this.getPersonnes()
     }
 
-    parseJwt(token) {
-        var base64Url = token.split('.')[1];
-        var base64 = base64Url.replace('-', '+').replace('_', '/');
-        return JSON.parse(window.atob(base64));
-    }
-
     openModal() {
         this.myModal = new bootstrap.Modal(document.getElementById('createModal'), 'keyboard=true')
         this.myModal.show()
-    }
-
-    formatDateISO(date) {
-        let tabDate = date.split('/')
-
-        let newDate = tabDate[2] + '-' + tabDate[1] + '-' + tabDate[0]
-
-        return newDate
     }
 
     openModalUpdate(id,nom,prenom,date,sexe) {
@@ -68,7 +54,7 @@ class personnesController extends BaseController {
             isValid = false
         }
 
-        const infosUser = this.parseJwt(localStorage.getItem('Token'))
+        const infosUser = parseJwt(localStorage.getItem('Token'))
 
         if (isValid) {
             const params = JSON.stringify({
@@ -125,7 +111,7 @@ class personnesController extends BaseController {
             isValid = false
         }
 
-        const infosUser = this.parseJwt(localStorage.getItem('Token'))
+        const infosUser = parseJwt(localStorage.getItem('Token'))
 
         if (isValid) {
             const params = JSON.stringify({
@@ -150,7 +136,7 @@ class personnesController extends BaseController {
 
     async getPersonnes() {
         let content = ''
-        const infosUser = this.parseJwt(localStorage.getItem('Token'))
+        const infosUser = parseJwt(localStorage.getItem('Token'))
 
         let listOfPersonnes = await this.model.getPersonnes(infosUser.userId)
 
