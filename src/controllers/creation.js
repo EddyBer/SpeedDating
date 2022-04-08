@@ -20,16 +20,6 @@ class creationController extends BaseController {
             username.focus()
             username.className += " is-invalid"
             isValid = false
-        } 
-        if (!name.value) {
-            name.focus()
-            name.className += " is-invalid"
-            isValid = false
-        }
-        if (!firstName.value) {
-            firstName.focus()
-            firstName.className += " is-invalid"
-            isValid = false
         }
         if (!date.value) {
             date.focus()

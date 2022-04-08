@@ -1,9 +1,18 @@
 class connectController extends BaseController {
     constructor() {
         super()
+        this.refreshConnection()
+    }
+
+    refreshConnection() {
+        if (localStorage.getItem('Token')) {
+            localStorage.removeItem('Token')
+        }
     }
 
     async login() {
+        
+
         let username = $('#username')
         let password = $('#password')
 
