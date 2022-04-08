@@ -1,6 +1,7 @@
 class Model {
     constructor() {
         this.api = new API()
+        this.apiPersonne = new APIPersonne()
     }
 
     async login(params) {
@@ -34,22 +35,22 @@ class Model {
     }
 
     async getPersonnes(id) {
-        let res = await this.api.getPersonnes(id)
+        let res = await this.apiPersonne.getPersonnes(id)
         return res
     }
 
     async createPersonne(params) {
-        let res = await this.api.createPersonne(params)
+        let res = await this.apiPersonne.createPersonne(params)
         return res
     }
 
     async deletePersonne(id) {
-        let res = await this.api.deletePersonne(id)
+        let res = await this.apiPersonne.deletePersonne(id)
         return res
     }
 
     async updatePersonne(params) {
-        let res = await this.api.updatePersonne(params)
+        let res = await this.apiPersonne.updatePersonne(params)
         return res
     }
 }
