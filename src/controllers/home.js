@@ -20,7 +20,7 @@ class homeController extends BaseController {
         hiddenId.innerHTML = id
         inputNom.value = nom
         inputMessage.value = message
-        inputDate.value = formatDateISO(date)
+        inputDate.value = this.formatDateISO(date)
         inputNote.value = note
 
         this.myModal2.show()
