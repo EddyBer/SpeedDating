@@ -7,13 +7,13 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" onclick="navigate('home')">Home</a>
+            <a class="nav-link" onclick="navigate('home')">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" onclick="navigate('personnes')">My profil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" onclick="navigate('partage')">Posts</a>
+            <a class="nav-link active" aria-current="page" onclick="navigate('partage')">Posts</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" onclick="navigate('connect')">Logout</a>
@@ -25,43 +25,17 @@
 
 
 
-<div class="container-fluid">
-    <div class="">
-        <h1>My dates</h1>
-        <button id="openModal" type="button" class="btn btn-primary" onclick="homeController.openModal()">
-            New date
-        </button>
-    </div>
-    <div class="d-flex justify-content-center" id="rencontres">
-        <table class="table-responsive" style="margin-top:2%;width: 100%;">
-            <thead style="background-color: #2a638b;height: 50px;">
-                <tr style="text-align: center;">
-                    <th scope="col">Name</th>
-                    <th scope="col">Commentary</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Note</th>
-                    <th scope="col"><i class="bi bi-trash"></i></th>
-                    <th scope="col"><i class="bi bi-pencil"></i></th>
-                </tr>
-            </thead>
-            <tbody id="rencontre">
-            </tbody>
-        </table>
-    </div>
-</div>
-
-
 <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Your Date</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Votre rencontre</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Name</label>
+              <label for="recipient-name" class="col-form-label">Nom</label>
               <input type="text" class="form-control" id="name-rencontre">
             </div>
             <div class="mb-3">
@@ -69,11 +43,11 @@
               <input type="date" class="form-control" id="date-rencontre"></input>
             </div>
             <div class="mb-3">
-                <label for="message-text" class="col-form-label">Commentary (255 carac max)</label>
+                <label for="message-text" class="col-form-label">Commentaire (255 caractères max)</label>
                 <textarea class="form-control" id="message-rencontre"></textarea>
             </div>
             <div class="mb-3">
-                <label for="message-text" class="col-form-label">Note from 0 to 10</label>
+                <label for="message-text" class="col-form-label">Note de 0 à 10</label>
                 <input type="range" class="form-range" min="0" max="10"id="note-rencontre"></input>
             </div>
           </form>
@@ -90,14 +64,14 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modify informations</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Modifier votre rencontre</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="d-none" id="hiddenId"></div>
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Name</label>
+              <label for="recipient-name" class="col-form-label">Nom</label>
               <input type="text" class="form-control" id="name-update">
             </div>
             <div class="mb-3">
@@ -105,11 +79,11 @@
               <input type="date" class="form-control" id="date-update"></input>
             </div>
             <div class="mb-3">
-                <label for="message-text" class="col-form-label">Commentary (255 carac max)</label>
+                <label for="message-text" class="col-form-label">Commentaire (255 caractères max)</label>
                 <textarea class="form-control" id="message-update"></textarea>
             </div>
             <div class="mb-3">
-                <label for="message-text" class="col-form-label">Note from 0 to 10</label>
+                <label for="message-text" class="col-form-label">Note de 0 à 10</label>
                 <input type="range" class="form-range" min="0" max="10"id="note-update"></input>
             </div>
           </form>
@@ -125,7 +99,7 @@
   <div class="position-fixed bottom-0 end-50" style="z-index: 11">
     <div id="success" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-body">
-            Date created
+            Posted
         </div>
     </div>
 </div>
