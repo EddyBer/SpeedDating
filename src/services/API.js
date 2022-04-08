@@ -11,17 +11,17 @@ class API {
     }
 
     async getRencontres(id) {
-        let res =  await fetch(`http://localhost:5500/rencontres/${id}`, { method:'GET'})
+        let res =  await fetch(`http://localhost:5500/rencontre/${id}`, { method:'GET'})
         return res
     }
 
     async createRencontre(params) {
-        let res =  await fetch(`http://localhost:5500/rencontres/create/${params}`, { method:'POST'})
+        let res =  await fetch(`http://localhost:5500/rencontre/create/${params}`, { method:'POST'})
         return res
     }
 
     async deleteRencontre(id) {
-        let res =  await fetch(`http://localhost:5500/rencontres/delete/${id}`, { method:'DELETE'})
+        let res =  await fetch(`http://localhost:5500/rencontre/delete/${id}`, { method:'DELETE'})
         return res
     }
 
