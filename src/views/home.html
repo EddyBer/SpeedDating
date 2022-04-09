@@ -23,8 +23,6 @@
     </div>
 </nav>
 
-
-
 <div class="container-fluid">
     <div class="">
         <h1>My dates</h1>
@@ -42,6 +40,7 @@
                     <th scope="col">Note</th>
                     <th scope="col"><i class="bi bi-trash"></i></th>
                     <th scope="col"><i class="bi bi-pencil"></i></th>
+                    <th scope="col"><i class="bi bi-cursor"></i></th>
                 </tr>
             </thead>
             <tbody id="rencontre">
@@ -49,7 +48,6 @@
         </table>
     </div>
 </div>
-
 
 <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -74,7 +72,8 @@
             </div>
             <div class="mb-3">
                 <label for="message-text" class="col-form-label">Note from 0 to 10</label>
-                <input type="range" class="form-range" min="0" max="10"id="note-rencontre"></input>
+                <input type="range" class="form-range" min="0" max="10"id="note-rencontre" oninput="this.nextElementSibling.value = this.value"></input>
+                <output>5</output>
             </div>
           </form>
         </div>
@@ -110,7 +109,8 @@
             </div>
             <div class="mb-3">
                 <label for="message-text" class="col-form-label">Note from 0 to 10</label>
-                <input type="range" class="form-range" min="0" max="10"id="note-update"></input>
+                <input type="range" class="form-range" min="0" max="10"id="note-update" oninput="this.nextElementSibling.value = this.value"></input>
+                <output id = "note-update-display"></output>
             </div>
           </form>
         </div>

@@ -15,6 +15,7 @@ class homeController extends BaseController {
         let inputDate =  document.getElementById('date-update')
         let inputMessage =  document.getElementById('message-update')
         let inputNote =  document.getElementById('note-update')
+        let inputNoteDisplay =  document.getElementById('note-update-display')
         let hiddenId =  document.getElementById('hiddenId')
 
         hiddenId.innerHTML = id
@@ -22,6 +23,7 @@ class homeController extends BaseController {
         inputMessage.value = message
         inputDate.value = this.formatDateISO(date)
         inputNote.value = note
+        inputNoteDisplay.value = note
 
         this.myModal2.show()
     }
@@ -188,6 +190,7 @@ class homeController extends BaseController {
                                 <td>${elem.note}/10</td>
                                 <td><i class="bi bi-trash" onclick="homeController.deleteRencontre('${elem.id}')"></i></td>
                                 <td><i class="bi bi-pencil" onclick="homeController.openModalUpdate('${elem.id}','${elem.personne}','${elem.commentaire}','${date}','${elem.note}')"></i></td>
+                                <td><i class="bi bi-cursor" onclick="alert('workInProgress')"></i></td>
                             </tr>`
             })
 
