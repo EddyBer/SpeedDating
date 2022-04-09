@@ -3,6 +3,7 @@ class Model {
         this.api = new API()
         this.apiPersonne = new APIPersonne()
         this.apiRencontre = new APIRencontre()
+        this.apiPartage = new APIPartage()
     }
 
     async login(params) {
@@ -52,6 +53,11 @@ class Model {
 
     async updatePersonne(params) {
         let res = await this.apiPersonne.updatePersonne(params)
+        return res
+    }
+
+    async getPartages() {
+        let res = await this.apiPartage.getAll()
         return res
     }
 }

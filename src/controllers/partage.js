@@ -5,7 +5,7 @@ class partageController extends BaseController {
     }
 
     async getPartage() {
-
+        this.model.getPartages()
     }
 }
 

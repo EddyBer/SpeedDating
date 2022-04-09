@@ -3,6 +3,7 @@ const { initializeConfigMiddlewares, initializeErrorMiddlwares } = require('./mi
 const userRoutes = require('../controllers/router/user.routes');
 const personneRoutes = require('../controllers/router/personne.route');
 const rencontresRoutes = require('../controllers/router/rencontres.router');
+const partagesRoutes = require('../controllers/router/partages.route');
 const { sequelize } = require('../models/db');
 
 class WebServer {
@@ -37,6 +38,7 @@ class WebServer {
     this.app.use('/', userRoutes.initializeRoutes());
     this.app.use('/personne', personneRoutes.initializeRoutesPersonne());
     this.app.use('/rencontre', rencontresRoutes.initializeRoutesRencontre());
+    this.app.use('/partage', partagesRoutes.initializeRoutesPartage());
   }
 }
 

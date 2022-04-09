@@ -1,5 +1,3 @@
-const { users } = require('../db');
-const uuid = require('uuid');
 const {Rencontres} = require('./rencontres-model')
 
 exports.createRencontre = async (body) => {
