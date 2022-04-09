@@ -1,10 +1,11 @@
 const express = require('express');
 const routerRencontre = express.Router();
 const rencontresRepository = require('../../models/Rencontres/rencontre-repository');
+const { authMiddleware } = require('../../core/middlewares')
 
-routerRencontre.get('/:id',
+routerRencontre.get('/:id',authMiddleware,
     async (req,res) => {
-        console.log('bleg')
+        
         const listOfRencontres = await rencontresRepository.getAllById(req.params.id)
         
         if (!listOfRencontres) {
@@ -15,7 +16,7 @@ routerRencontre.get('/:id',
         }
 })
 
-routerRencontre.post('/create/:params',
+routerRencontre.post('/create/:params',authMiddleware,
     async (req,res) => {
         const parameters = JSON.parse(req.params['params'])
 
@@ -29,7 +30,7 @@ routerRencontre.post('/create/:params',
         }
 })
 
-routerRencontre.delete('/delete/:id',
+routerRencontre.delete('/delete/:id',authMiddleware,
     async (req,res) => {
 
         const deleted = await rencontresRepository.deleteRencontre(req.params.id)
@@ -41,7 +42,7 @@ routerRencontre.delete('/delete/:id',
         }
 })
 
-routerRencontre.put('/update/:params',
+routerRencontre.put('/update/:params',authMiddleware,
     async (req,res) => {
         const parameters = JSON.parse(req.params['params'])
 

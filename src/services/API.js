@@ -1,6 +1,7 @@
 class API {
     constructor() {
         this.url = 'http://localhost:5500/'
+        this.header = new Headers({'Authorization': localStorage.getItem('Token')})
     }
 
     async login(params) {

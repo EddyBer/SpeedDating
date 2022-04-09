@@ -1,8 +1,9 @@
 const express = require('express')
 const routerPersonne = express.Router();
 const personneRepository = require('../../models/personnes/personnes-repository');
+const { authMiddleware } = require('../../core/middlewares')
 
-routerPersonne.get('/:id',
+routerPersonne.get('/:id',authMiddleware,
     async (req,res) => {
         const listOfPersonnes = await personneRepository.getAllById(req.params.id)
         
@@ -14,7 +15,7 @@ routerPersonne.get('/:id',
         }
 })
 
-routerPersonne.post('/create/:params',
+routerPersonne.post('/create/:params',authMiddleware,
     async (req,res) => {
         const parameters = JSON.parse(req.params['params'])
 
@@ -28,7 +29,7 @@ routerPersonne.post('/create/:params',
         }
 })
 
-routerPersonne.delete('/delete/:id',
+routerPersonne.delete('/delete/:id',authMiddleware,
     async (req,res) => {
 
         const deleted = await personneRepository.deletePersonne(req.params.id)
@@ -40,7 +41,7 @@ routerPersonne.delete('/delete/:id',
         }
 })
 
-routerPersonne.put('/update/:params',
+routerPersonne.put('/update/:params',authMiddleware,
     async (req,res) => {
         const parameters = JSON.parse(req.params['params'])
 

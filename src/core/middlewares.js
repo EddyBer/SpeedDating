@@ -2,6 +2,7 @@ const express = require('express');
 const { DateTime } = require('luxon');
 const cors = require('cors');
 const jwt = require('express-jwt');
+const jwtToken = require('jsonwebtoken');
 
 const initJsonHandlerMiddlware = (app) => app.use(express.json());
 
@@ -26,20 +27,25 @@ const initLoggerMiddlware = (app) => {
   });
 };
 
-const unprotected = [
-    '/login',
-    '/register'
-]
+exports.authMiddleware = async (req,res,next) => {
+    const token = req.headers['authorization']
+    
+    if (!token) {
+        res.status(401).send('A Token must b provided')
+    } else {
+        const check = await jwtToken.verify(token,process.env.JWT_SECRET)
 
-const initJwtMiddleware = (app) => {
-    //app.use(jwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] }).unless({ path: unprotected }));
-};
+    if (!check) {
+        res.status(401).send()
+    }
+    next()
+    }
+}
 
 exports.initializeConfigMiddlewares = (app) => {
   initJsonHandlerMiddlware(app);
   initCorsMiddlware(app);
   initLoggerMiddlware(app);
-  initJwtMiddleware(app);
 }
 
 exports.initializeErrorMiddlwares = (app) => {
